@@ -4,3 +4,4 @@ this is the main repository for all the mini projects in the challenge.
 https://github.com/phudatphan/100MiniProjects
 
 - day start (11/16/2023)
+- icon navbar (11/17/2023) - animation
