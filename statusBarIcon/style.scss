@@ -1,0 +1,162 @@
+@import "../reset.scss";
+
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: #3faf82;
+  border-radius: 3px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// delare some attributes variables
+$menu-icon-line-height: 8px;
+$menu-icon-line-space: 14px;
+$menu-icon-offsetY: $menu-icon-line-height + $menu-icon-line-space;
+$menu-icon-height: (3 * $menu-icon-line-height) + (2 * $menu-icon-line-space);
+$cubic-bezier-in: cubic-bezier(0.3, 1, 0.7, 1);
+$cubic-bezier-out: (1, 0.7, 1, 0.3);
+
+.menu-icon {
+  width: 80px;
+  height: $menu-icon-height;
+  cursor: pointer;
+  z-index: 50;
+  .line-1,
+  .line-2,
+  .line-3 {
+    height: $menu-icon-line-height;
+    width: 100%;
+    background-color: #ffe3e3;
+    border-radius: 3px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s ease-in-out;
+  }
+  .line-1 {
+    animation: animate-line-1-rev 0.7s ease-in-out;
+  }
+  .line-2 {
+    margin: $menu-icon-line-space 0;
+    animation: animate-line-2-rev 0.7s ease-in-out;
+  }
+  .line-3 {
+    animation: animate-line-3-rev 0.7s ease-in-out;
+  }
+  // Move the mouse to the area containing the icon, the lines will change color
+  &:hover {
+    .line-1,
+    .line-2,
+    .line-3 {
+      background-color: #fff;
+    }
+  }
+
+  &.active {
+    .line-1,
+    .line-2,
+    .line-3 {
+      background-color: #fff;
+    }
+
+    .line-1 {
+      animation: animate-line-1 0.7s $cubic-bezier-in forwards;
+    }
+
+    .line-2 {
+      animation: animate-line-2 0.7s $cubic-bezier-in forwards;
+    }
+
+    .line-3 {
+      animation: animate-line-3 0.7s $cubic-bezier-in forwards;
+    }
+
+    .no-animation {
+      animation: none !important;
+      -webkit-animation: none !important;
+    }
+  }
+
+  // each line listen click events on the menu-icon area : Open Menu
+  @keyframes animate-line-1 {
+    0% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(0, $menu-icon-offsetY, 0) rotate(0deg);
+    }
+    100% {
+      transform: translate3d(0, $menu-icon-offsetY, 0) rotate(45deg);
+    }
+  }
+
+  @keyframes animate-line-2 {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes animate-line-3 {
+    0% {
+      transform: translate3d(0, 0, 0) rotate(0);
+    }
+    50% {
+      transform: translate3d(0, -($menu-icon-offsetY), 0) rotate(0);
+    }
+    100% {
+      transform: translate3d(0, -($menu-icon-offsetY), 0) rotate(135deg);
+    }
+  }
+
+  // each line listen click events on the menu-icon area : finish menu
+
+  @keyframes animate-line-1-rev {
+    0% {
+      transform: translate3d(0, $menu-icon-offsetY, 0) rotate(45deg);
+    }
+    50% {
+      transform: translate3d(0, $menu-icon-offsetY, 0) rotate(0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0);
+    }
+  }
+
+  @keyframes animate-line-2-rev {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes animate-line-3-rev {
+    0% {
+      transform: translate3d(0, -$menu-icon-offsetY, 0) rotate(135deg);
+    }
+    50% {
+      transform: translate3d(0, -$menu-icon-offsetY, 0) rotate(0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0);
+    }
+  }
+}
